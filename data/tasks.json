@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "missions": {
+    "main": [
+      {
+        "id": "150cf84c4dc64f49a887c66bd78f46f0",
+        "title": "Tugas SPK",
+        "done": false,
+        "created_at": "2026-10-15T23:08:35"
+      },
+      {
+        "id": "b9cc6050c125445aaadacf421db56260",
+        "title": "tugas baru",
+        "done": false,
+        "created_at": "2026-10-15T23:30:34"
+      }
+    ],
+    "side": [
+      {
+        "id": "391c2c0f1b504de6b33454ed76b0d102",
+        "title": "bobok",
+        "done": false,
+        "created_at": "2026-10-15T23:08:59"
+      }
+    ]
+  }
+}

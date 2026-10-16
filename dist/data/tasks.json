@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "missions": {
+    "main": [
+      {
+        "id": "8eb2758d3772419ab03701538eeacef4",
+        "title": "P. SPK - simulasi PID",
+        "done": false,
+        "created_at": "2026-10-16T00:17:51"
+      },
+      {
+        "id": "c11b22b61fc3480098460a90390b86f6",
+        "title": "P. SPK - lem motor",
+        "done": false,
+        "created_at": "2026-10-16T00:17:57"
+      },
+      {
+        "id": "1995b5dca5f0460086e43b36f955c2ec",
+        "title": "AI Prof Riyanto SEMUA TUGAS",
+        "done": false,
+        "created_at": "2026-10-16T00:18:08"
+      },
+      {
+        "id": "b76d4aaf9beb43c780b0399765167a5b",
+        "title": "PROPOSAL KP",
+        "done": false,
+        "created_at": "2026-10-16T00:19:13"
+      },
+      {
+        "id": "7ed0e791e7fb4f77948fb22e22db304b",
+        "title": "P. SO - project UTS app dg bash shell linux",
+        "done": false,
+        "created_at": "2026-10-16T22:17:36"
+      }
+    ],
+    "side": [
+      {
+        "id": "a5d45358df574da5ba1920d2c9173b55",
+        "title": "good sleep",
+        "done": false,
+        "created_at": "2026-10-16T00:18:57"
+      },
+      {
+        "id": "5a5d6c0ea2ee434e983e3bab2c440d8f",
+        "title": "tdl - gambar chara gedein",
+        "done": false,
+        "created_at": "2026-10-16T00:19:47"
+      },
+      {
+        "id": "2f598c5c3a3d40758fb55b68c7f655a1",
+        "title": "tdl - fitur notebook \"Tsukuyomi Records\"",
+        "done": false,
+        "created_at": "2026-10-16T00:20:07"
+      },
+      {
+        "id": "f8ddb0bb54884125a544e197d76fadb8",
+        "title": "tdl - make the notif from the message box more noticable everytime it updates?",
+        "done": false,
+        "created_at": "2026-10-16T00:21:38"
+      },
+      {
+        "id": "e1d7422074e14d1b9dd198af0c890ea8",
+        "title": "tdl - upload ke github",
+        "done": false,
+        "created_at": "2026-10-16T00:21:51"
+      },
+      {
+        "id": "6d05a681569944d09946ece8365d2bca",
+        "title": "tdl - button to jump to the top",
+        "done": false,
+        "created_at": "2026-10-16T23:49:56"
+      }
+    ]
+  }
+}
