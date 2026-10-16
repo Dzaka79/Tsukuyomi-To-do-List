@@ -1,9 +1,3 @@
-"""Pure business logic for Tsukuyomi To-do-List.
-
-No Streamlit imports here — everything is unit-testable with plain pytest.
-See SPEC.md for the contract this module implements.
-"""
-
 from __future__ import annotations
 
 import json
@@ -22,7 +16,6 @@ ASSETS_DIR = Path("assets/characters")
 MSG_START = "Let's finish the tasks one by one~"
 MSG_ADDED = "One more task, huh? Don't lose hope, let's do it together!"
 MSG_DONE = "Yaay~! A task is done, a celebration must begun!"
-
 
 @dataclass
 class Task:
@@ -57,14 +50,12 @@ class Task:
             raise ValueError("task created_at must be a string")
         return cls(id=id_, title=title.strip(), done=done, created_at=created_at)
 
-
 @dataclass(frozen=True)
 class Character:
     key: str
     name: str
     quote: str
     photos: tuple[str, ...]
-
 
 CHARACTERS: tuple[Character, ...] = (
     Character(
@@ -99,11 +90,9 @@ CHARACTERS: tuple[Character, ...] = (
     ),
 )
 
-
 def today() -> date:
     """Today's date; thin wrapper so tests can monkeypatch it."""
     return date.today()
-
 
 def daily_pick(day: date) -> tuple[Character, str]:
     """Deterministically pick the character and photo shown on ``day``.
@@ -116,18 +105,15 @@ def daily_pick(day: date) -> tuple[Character, str]:
     photo = rng.choice(character.photos)
     return character, photo
 
-
 def default_store() -> dict:
     return {
         "version": STORE_VERSION,
         "missions": {mission: [] for mission in MISSION_TYPES},
     }
 
-
 def _check_mission(mission: str) -> None:
     if mission not in MISSION_TYPES:
         raise KeyError(f"unknown mission type: {mission!r}")
-
 
 def load_store(path: Path = DEFAULT_DATA_PATH) -> dict:
     """Load the task store; missing or malformed files yield the default shape."""
@@ -146,7 +132,6 @@ def load_store(path: Path = DEFAULT_DATA_PATH) -> dict:
     except (OSError, ValueError, KeyError, TypeError):
         return default_store()
 
-
 def save_store(store: dict, path: Path = DEFAULT_DATA_PATH) -> None:
     """Persist the store as JSON, creating parent directories as needed."""
     path = Path(path)
@@ -162,11 +147,9 @@ def save_store(store: dict, path: Path = DEFAULT_DATA_PATH) -> None:
         json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8"
     )
 
-
 def get_tasks(store: dict, mission: str) -> list[Task]:
     _check_mission(mission)
     return store["missions"][mission]
-
 
 def add_task(
     store: dict,
@@ -193,7 +176,6 @@ def add_task(
     store["missions"][mission].append(task)
     return task
 
-
 def _find_task(store: dict, mission: str, task_id: str) -> Task:
     _check_mission(mission)
     for task in store["missions"][mission]:
@@ -201,26 +183,21 @@ def _find_task(store: dict, mission: str, task_id: str) -> Task:
             return task
     raise KeyError(f"no task {task_id!r} in mission {mission!r}")
 
-
 def toggle_task(store: dict, mission: str, task_id: str) -> Task:
     task = _find_task(store, mission, task_id)
     task.done = not task.done
     return task
-
 
 def remove_task(store: dict, mission: str, task_id: str) -> Task:
     task = _find_task(store, mission, task_id)
     store["missions"][mission].remove(task)
     return task
 
-
 def roster_photos(characters: tuple[Character, ...] = CHARACTERS) -> list[str]:
     return [photo for character in characters for photo in character.photos]
 
-
 def missing_photos(characters: tuple[Character, ...] = CHARACTERS) -> list[str]:
     return [photo for photo in roster_photos(characters) if not Path(photo).is_file()]
-
 
 def ensure_assets(characters: tuple[Character, ...] = CHARACTERS) -> None:
     """Fail fast (SPEC §2.10) listing every missing character photo."""
@@ -230,15 +207,12 @@ def ensure_assets(characters: tuple[Character, ...] = CHARACTERS) -> None:
             "Missing character photos: " + ", ".join(missing)
         )
 
-
 def format_clock(moment: datetime) -> str:
     return moment.strftime("%H:%M")
-
 
 def format_calendar(day: date) -> tuple[str, str]:
     """(day number, 'Month, YYYY') for the sidebar calendar."""
     return str(day.day), day.strftime("%B, %Y")
-
 
 def format_elapsed(seconds: int) -> str:
     """Working-time counter as zero-padded 'HH:MM:SS'."""

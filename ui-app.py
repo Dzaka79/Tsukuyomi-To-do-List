@@ -1,5 +1,3 @@
-"""Streamlit UI for Tsukuyomi To-do-List. Business logic lives in logic.py (SPEC.md)."""
-
 from __future__ import annotations
 
 import html
@@ -7,7 +5,6 @@ from datetime import datetime
 from pathlib import Path
 
 import streamlit as st
-
 import logic
 
 st.set_page_config(
@@ -84,7 +81,6 @@ section[data-testid="stSidebar"] .block-container { padding-top: 1.5rem; }
 
 st.markdown(f"<style>{_CSS}</style>", unsafe_allow_html=True)
 
-# Fail fast when character photos are absent (SPEC §2.10).
 try:
     logic.ensure_assets()
 except FileNotFoundError as exc:
@@ -100,9 +96,6 @@ if "message" not in st.session_state:
 if "working_start" not in st.session_state:
     st.session_state["working_start"] = datetime.now()
 
-
-# Widget callbacks run before each rerun, so the message box (rendered earlier
-# in the script) always shows the text produced by the user's latest action.
 def _toggle_input(mission: str) -> None:
     key = f"show_input_{mission}"
     st.session_state[key] = not st.session_state.get(key, False)
@@ -235,7 +228,7 @@ def _render_section(store: dict, mission: str, label: str) -> None:
                 )
 
 
-# Banner sits at the very top of the main area (optional asset, SPEC §1).
+# Banner
 for _banner in (Path("assets/banner.jpg"), Path("assets/banner.png")):
     if _banner.is_file():
         st.image(str(_banner), width="stretch")
@@ -272,7 +265,7 @@ store = logic.load_store()
 _render_section(store, "main", "Main Missions")
 _render_section(store, "side", "Side Missions")
 
-# Sidebar shortcut → scroll to the matching section (SPEC §2.6).
+# Sidebar shortcut
 jump = st.session_state.get("jump_target")
 if jump in ("main", "side"):
     st.session_state["jump_target"] = None

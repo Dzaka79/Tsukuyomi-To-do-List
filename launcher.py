@@ -1,10 +1,3 @@
-"""Launch Tsukuyomi To-do-List: start the Streamlit server and open a browser.
-
-PyInstaller entry point for "Tsukuyomi TDL - Login.exe". Frozen mode bundles
-ui-app.py + logic.py, serves them headless on a free local port, writes a log
-next to the exe (console is hidden), and opens the default browser.
-"""
-
 from __future__ import annotations
 
 import os
@@ -16,10 +9,8 @@ import time
 import webbrowser
 from pathlib import Path
 
-
 def _is_frozen() -> bool:
     return bool(getattr(sys, "frozen", False))
-
 
 def _base_dir() -> Path:
     """Directory the app treats as its home (data/, assets/ live here)."""
@@ -27,13 +18,11 @@ def _base_dir() -> Path:
         return Path(sys.argv[0]).resolve().parent
     return Path(__file__).resolve().parent
 
-
 def _bundle_dir() -> Path:
     """Directory containing ui-app.py/logic.py (temp extraction when frozen)."""
     if _is_frozen():
         return Path(getattr(sys, "_MEIPASS", _base_dir())).resolve()
     return _base_dir()
-
 
 def _redirect_stdio(base: Path) -> None:
     """With --noconsole, sys.stdout/stderr are None; log to a file instead."""
@@ -53,7 +42,6 @@ def _redirect_stdio(base: Path) -> None:
             sys.stdout = open(os.devnull, "w", encoding="utf-8")
     if sys.stderr is None:
         sys.stderr = sys.stdout
-
 
 def _materialize_assets(base: Path, bundle: Path) -> None:
     """Frozen builds bundle assets/ inside _MEIPASS (deleted after exit).
@@ -81,7 +69,6 @@ def _materialize_assets(base: Path, bundle: Path) -> None:
     if copied and sys.stdout is not None:
         print(f"launcher: materialized {copied} asset file(s) into {base}")
 
-
 def _free_port(start: int = 8501, attempts: int = 100) -> int:
     for port in range(start, start + attempts):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
@@ -91,7 +78,6 @@ def _free_port(start: int = 8501, attempts: int = 100) -> int:
                 continue
             return port
     raise RuntimeError("No free port available for Tsukuyomi TDL.")
-
 
 def _open_when_ready(port: int, url: str, timeout: float = 60.0) -> None:
     """Open the default browser once the Streamlit port accepts connections."""
@@ -106,7 +92,6 @@ def _open_when_ready(port: int, url: str, timeout: float = 60.0) -> None:
                 continue
         break
     webbrowser.open(url)
-
 
 def main() -> None:
     base = _base_dir()
@@ -155,7 +140,6 @@ def main() -> None:
         "#e7ecf5",
     ]
     sys.exit(stcli.main())
-
 
 if __name__ == "__main__":
     main()
