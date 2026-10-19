@@ -164,7 +164,7 @@ def _render_section(store: dict, mission: str, label: str) -> None:
         st.markdown(f'<div class="section-title">{label}</div>', unsafe_allow_html=True)
     with add_col:
         st.button(
-            "⊕",
+            "Add",
             key=f"add_toggle_{mission}",
             on_click=_toggle_input,
             args=(mission,),
@@ -191,7 +191,7 @@ def _render_section(store: dict, mission: str, label: str) -> None:
     tasks = logic.get_tasks(store, mission)
     if not tasks:
         st.markdown(
-            '<div class="empty-note">No missions yet — press ⊕ to add one.</div>',
+            '<div class="empty-note">No missions yet — press "Add" to add one.</div>',
             unsafe_allow_html=True,
         )
         return
@@ -219,7 +219,7 @@ def _render_section(store: dict, mission: str, label: str) -> None:
                 )
             with delete_col:
                 st.button(
-                    "×",
+                    "X",
                     key=f"del::{mission}::{task.id}",
                     on_click=_handle_delete,
                     args=(mission, task.id),
@@ -228,22 +228,21 @@ def _render_section(store: dict, mission: str, label: str) -> None:
                 )
 
 
-# Banner
 for _banner in (Path("assets/banner.jpg"), Path("assets/banner.png")):
     if _banner.is_file():
         st.image(str(_banner), width="stretch")
         break
 
-st.title("Welcome to Tsukuyomi To-do-List!")
+st.title("Welcome to Tsukuyomi To-do List!")
 st.markdown(
     '<div class="subtitle">Let\'s do our best again today!</div>',
     unsafe_allow_html=True,
 )
 
 character, photo = logic.daily_pick(logic.today())
-photo_col, info_col = st.columns([2.1, 9], gap="small")
+photo_col, info_col = st.columns([3.2, 9], gap="small")
 with photo_col:
-    st.image(photo, width=210)
+    st.image(photo, width=250)
 with info_col:
     st.markdown('<div class="meet-label">Today, you meet</div>', unsafe_allow_html=True)
     st.markdown(

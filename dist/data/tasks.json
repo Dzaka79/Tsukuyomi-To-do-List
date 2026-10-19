@@ -53,15 +53,9 @@
         "created_at": "2026-10-16T00:20:07"
       },
       {
-        "id": "f8ddb0bb54884125a544e197d76fadb8",
-        "title": "tdl - make the notif from the message box more noticable everytime it updates?",
-        "done": false,
-        "created_at": "2026-10-16T00:21:38"
-      },
-      {
         "id": "e1d7422074e14d1b9dd198af0c890ea8",
         "title": "tdl - upload ke github",
-        "done": false,
+        "done": true,
         "created_at": "2026-10-16T00:21:51"
       },
       {
@@ -69,6 +63,18 @@
         "title": "tdl - button to jump to the top",
         "done": false,
         "created_at": "2026-10-16T23:49:56"
+      },
+      {
+        "id": "4b45cda155ee438085caae1571f08b12",
+        "title": "tdl - make the message box stay at the top of the screen after scrolled below it",
+        "done": false,
+        "created_at": "2026-10-17T00:32:18"
+      },
+      {
+        "id": "496f368a968644b5b62cb47cafe8ac51",
+        "title": "tdl - add more banners for main and side missions",
+        "done": false,
+        "created_at": "2026-10-17T00:32:38"
       }
     ]
   }
